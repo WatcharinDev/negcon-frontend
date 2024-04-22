@@ -1,12 +1,14 @@
+import { authOptions } from '@/app/api/auth/authoptions';
 import PostCard from '@/components/commons/card/post-card';
 import { NextPage } from 'next'
+import { getServerSession } from 'next-auth';
 import React from 'react'
 
 type Props = {}
 
-const CommunityPage: NextPage<Props> = ({ }) => {
+const CommunityPage: NextPage<Props> = async ({ }) => {
+    const session=await getServerSession(authOptions)
     const data = Array.from({ length: 10 }, (_, index) => index);
-    console.log(data)
     return (
         <div className='flex flex-col justify-center items-center gap-4'>
             {

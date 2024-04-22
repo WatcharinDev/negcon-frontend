@@ -1,5 +1,7 @@
-import { App, ConfigProvider } from "antd";
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
+import { ConfigProvider } from "antd";
+
+
+const AppLayout = async ({ children }: { children: React.ReactNode }) => {
 
     const antGlobalConfig = {
         token: {
@@ -9,8 +11,6 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
             controlHeight: 40,
         },
     };
-
-
     return (
         <ConfigProvider theme={antGlobalConfig} >
             {children}

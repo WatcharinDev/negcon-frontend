@@ -1,5 +1,6 @@
 'use client'
 import { Button, Card, Checkbox, Form, Input } from 'antd'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import React, { FunctionComponent } from 'react'
 type Props = {
@@ -9,10 +10,19 @@ type Props = {
 
 const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
     const handleSignIn = (data: any) => {
-        onFinish(JSON.parse(JSON.stringify(data))).then((result: any) => {
-            console.log(result)
+        onFinish(JSON.parse(JSON.stringify(data))).then(async (result: any) => {
+            await signIn("credentials", {
+                access_token: result.access_token,
+                id: result.id,
+                username: result.username,
+                code:result.code,
+                first_name:result.first_name,
+                last_name:result.last_name,
+                role_code:result.role_code,
+                role_id:result.role_id,
+            });
         }).catch((err: any) => {
-            
+
         });
     }
     return (
