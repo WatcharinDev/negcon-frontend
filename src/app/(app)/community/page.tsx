@@ -1,4 +1,4 @@
-import { authOptions } from '@/app/api/auth/authoptions';
+import { authOptions } from '../../api/auth/authoptions';
 import PostCard from '@/components/commons/card/post-card';
 import { NextPage } from 'next'
 import { getServerSession } from 'next-auth';
