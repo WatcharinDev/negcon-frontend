@@ -22,7 +22,7 @@ const SignupForm: React.FC<Props> = ({ onFinish, onFinishFailed }) => {
       >
         <Form.Item
           className='w-full'
-          label="อีเมล"
+          label="บัญชีผู้ใช้งาน"
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
@@ -78,7 +78,7 @@ const SignupForm: React.FC<Props> = ({ onFinish, onFinishFailed }) => {
         </div>
         <Form.Item
           label="ประเภทบัญชี"
-          name="type"
+          name="role_id"
           className='w-full'
         >
           <Select
@@ -88,9 +88,7 @@ const SignupForm: React.FC<Props> = ({ onFinish, onFinishFailed }) => {
             <Select.Option value="demo" key={`fixer`}>ช่าง</Select.Option>
           </Select>
         </Form.Item>
-
-
-        <Form.Item name="เกี่ยวกับตัวเอง" label="Introduction">
+        <Form.Item name="introduction" label="เกี่ยวกับตัวเอง">
           <Input.TextArea />
         </Form.Item>
 
