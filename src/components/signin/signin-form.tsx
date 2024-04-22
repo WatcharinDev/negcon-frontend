@@ -8,6 +8,13 @@ type Props = {
 }
 
 const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
+    const handleSignIn = (data: any) => {
+        onFinish(JSON.parse(JSON.stringify(data))).then((result: any) => {
+            console.log(result)
+        }).catch((err: any) => {
+            
+        });
+    }
     return (
         <Card className='w-[500px] bg-gray-300 '>
             <h1 className='text-center text-[2rem]'>เข้าสู่ระบบ</h1>
@@ -15,7 +22,7 @@ const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
                 className='w-full text-white'
                 layout='vertical'
                 initialValues={{ remember: true }}
-                onFinish={onFinish}
+                onFinish={handleSignIn}
                 onFinishFailed={onFinishFailed}
             >
                 <Form.Item
@@ -34,14 +41,6 @@ const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
                     <Input.Password />
-                </Form.Item>
-
-                <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{ offset: 8, span: 16 }}
-                >
-                    <Checkbox>จดจำฉัน</Checkbox>
                 </Form.Item>
 
                 <Form.Item className='w-full'>
