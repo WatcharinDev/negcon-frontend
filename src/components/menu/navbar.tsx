@@ -12,7 +12,7 @@ const Navbar: React.FC = async () => {
         <div className='flex align-middle gap-4 w-[250px]'>
           <div>
             <Link href="/">
-              <h1 className="text-xl font-bold p-0 m-0">Negcon Web App</h1>
+              <h1 className="text-xl font-bold p-0 m-0">Negcon Web App 6666666</h1>
             </Link>
           </div>
 
