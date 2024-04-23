@@ -6,11 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "build:dev": "pnpm install && env-cmd -f .env.dev next build",
+    "start:dev": "env-cmd -f .env.dev next start",
+    "build:uat": "pnpm install && env-cmd -f .env.uat next build",
+    "start:uat": "env-cmd -f .env.uat next start",
+    "build:prd": "pnpm install && env-cmd -f .env.prod next build",
+    "start:prd": "env-cmd -f .env.prod next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
+    "env-cmd": "^10.1.0",
     "next": "14.0.3",
     "next-auth": "^4.24.7",
     "react": "^18",
