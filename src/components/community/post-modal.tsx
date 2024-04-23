@@ -1,5 +1,6 @@
-import { Modal } from 'antd'
-import React, { FunctionComponent } from 'react'
+import { Button, Form, Modal } from 'antd'
+import TextArea from 'antd/es/input/TextArea'
+import React, { FunctionComponent, useState } from 'react'
 
 type Props = {
     open: boolean
@@ -7,8 +8,14 @@ type Props = {
 }
 
 const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
+    const [loading, setLoading] = useState(false);
+    const [form] = Form.useForm();
     const handleSubmit = () => {
-
+        form.validateFields().then(async (values) => {
+           console.log('value',values)
+        }).catch((errorInfo) => {
+           
+        });
     }
     const handleClose = () => {
         onClose(false)
@@ -20,10 +27,27 @@ const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
             onOk={handleSubmit}
             onCancel={handleClose}
             centered
+            footer={[
+                <Button key="back" onClick={handleClose} size='small'>
+                    Cancel
+                </Button>,
+                <Button
+                    size='small'
+                    key="submit"
+                    type="primary"
+                    loading={loading}
+                    className='bg-sky-600'
+                    onClick={handleSubmit}
+                >
+                    Post
+                </Button>,
+            ]}
         >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <Form form={form}>
+                <Form.Item name="content">
+                    <TextArea rows={4} />
+                </Form.Item>
+            </Form>
         </Modal>
     )
 }
