@@ -8,8 +8,6 @@ type Props = {}
 
 const CommunityPage: NextPage<Props> = async ({ }) => {
     const session=await getServerSession(authOptions)
-
-    /////aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     const data = Array.from({ length: 10 }, (_, index) => index);
     return (
         <div className='flex flex-col justify-center items-center gap-4'>
