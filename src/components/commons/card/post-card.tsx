@@ -3,13 +3,16 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import { Avatar, Card, Collapse, Image as ImageAntd, Typography } from 'antd'
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import Image from 'next/image';
+import { community_list } from '@/models/community';
 const { Meta } = Card;
-type Props = {}
+type Props = {
+  data:community_list
+}
 
-const PostCard: FunctionComponent<Props> = (props: Props) => {
+const PostCard: FunctionComponent<Props> = ({data}) => {
   const [visible, setVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const longText = "If you are using a specific programming \n language or framework, there might be libraries or functions available to generate Lorem Ipsum text programmatically. Let me know if you have a specific environment in mind, and I can provide more targeted instructions.In this example:The Collapse component is used to create a collapsible container.The Panel component represents the collapsible section within the Collapse component.The isExpanded state is used to determine whether to show the link or not.The useEffect hook is used to calculate the number of lines in the paragraph and set the isExpanded state accordingly.link is conditionally rendered based on the isExpanded state.Please note that the logic to determine the number of lines may vary based on your specific styling and content. The example assumes each line is 16 pixels high. You might need to adjust this value based on your actual styling.";
+  const longText = data.posts_content;
   const maxCharacters = 300;
   const short = longText.substring(0, maxCharacters)
 
@@ -37,8 +40,8 @@ const PostCard: FunctionComponent<Props> = (props: Props) => {
     >
       <Meta
         avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-        title="Card title"
-        description="This is the description"
+        title={data.posts_created_by}
+        description={data.posts_update_at}
       />
       <p className='mt-4'>
         {isExpanded ? renderTextWithLineBreaks(longText) : renderTextWithLineBreaks(short)}

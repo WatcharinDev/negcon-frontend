@@ -18,21 +18,25 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <NextAuthProvider session={session}>
-            <ConfigProvider theme={antGlobalConfig} >
-                <div className="h-screen bg-gray-100 flex flex-col">
-                    <Navbar />
-                    <div className="flex-1 flex overflow-hidden">
-                        <Sidebar />
-                        <div className="flex-1 overflow-y-auto">
-                            <main className="mx-auto min-w-[908px] max-w-[1280px] px-8 py-10">
-                                {children}
-                            </main>
-                        </div>
 
+            <ConfigProvider theme={antGlobalConfig} >
+                <App>
+                    <div className="h-screen bg-gray-100 flex flex-col">
+                        <Navbar />
+                        <div className="flex-1 flex overflow-hidden">
+                            <Sidebar />
+                            <div className="flex-1 overflow-y-auto">
+                                <main className="mx-auto min-w-[908px] max-w-[1280px] px-8 py-10">
+                                    {children}
+                                </main>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </App>
 
             </ConfigProvider>
+
         </NextAuthProvider>
 
     );
