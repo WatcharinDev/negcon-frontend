@@ -1,24 +1,46 @@
 'use client'
 import { filterOption } from '@/helper/filter-option'
-import { Button, Card, Checkbox, DatePicker, Form, Input, Select } from 'antd'
+import { App, Button, Card, Checkbox, DatePicker, Form, Input, Select, UploadFile } from 'antd'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import ProfileUploadImage from '../commons/uploads/profile-upload-image'
+import { handleSubmit } from '@/app/(auth)/signup/signup-action'
+import { NotificationSuccess } from '@/helper/alert-modals'
 
-type Props = {
-  onFinish: any
-  onFinishFailed: any
-}
+type Props = {}
 
-const SignupForm: React.FC<Props> = ({ onFinish, onFinishFailed }) => {
+const SignupForm: React.FC<Props> = ({ }) => {
+  const [fileList, setFileList] = useState<UploadFile[]>([])
+  const { notification } = App.useApp()
+  const onFinish = (values: any) => {
+    const payload = {
+      ...values,
+      role_code:"SADM",
+      profile_img: fileList[0]?.url || ""
+    }
+    console.log('payload',payload)
+    handleSubmit(payload).then((response: any) => {
+      console.log('response',response)
+      NotificationSuccess(notification,"")
+    }).catch((err: any) => {
+      console.log(err)
+    });
+  }
+  const handleOnFinishFailed = (value: any) => {
+    console.log('handleOnFinishFailed', value)
+  }
   return (
     <Card className='w-[800px] bg-gray-300 '>
       <h1 className='text-center text-[2rem]'>สมัครสมาชิก</h1>
+      <div className='text-center mt-4'>
+        <ProfileUploadImage fileList={fileList} setFileList={setFileList} />
+      </div>
       <Form
         className='w-full text-white'
         layout='vertical'
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onFinishFailed={handleOnFinishFailed}
       >
         <Form.Item
           className='w-full'
@@ -84,8 +106,8 @@ const SignupForm: React.FC<Props> = ({ onFinish, onFinishFailed }) => {
           <Select
             filterOption={filterOption}
           >
-            <Select.Option value="demo" key={`cutomer`}>ผู้ใช้</Select.Option>
-            <Select.Option value="demo" key={`fixer`}>ช่าง</Select.Option>
+            <Select.Option value="2" key={`cutomer`}>ผู้ใช้</Select.Option>
+            <Select.Option value="3" key={`fixer`}>ช่าง</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item name="introduction" label="เกี่ยวกับตัวเอง">

@@ -6,6 +6,7 @@ declare module "next-auth" {
     id: number
     username: string
     code:string
+    profile_img:string
     first_name:string
     last_name:string
     role_code:string
@@ -24,6 +25,7 @@ declare module "next-auth/jwt" {
     id: number
     username: string
     code:string
+    profile_img:string
     first_name:string
     last_name:string
     role_code:string

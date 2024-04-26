@@ -8,7 +8,7 @@ export const handleAddPost = async (payload: any) => {
         if (!response) {
             return response
         }
-        revalidatePath('/community')
+        revalidatePath('/community',"page")
         return response
     } catch (error) {   
         console.log(error)
@@ -20,7 +20,7 @@ export const handleGetAllPost = async (filter: any) => {
     try {
         const response = await CommunityServices.GetAll(filter)
         if (!response) {
-            return response
+            return null
         }
         return response
     } catch (error) {   

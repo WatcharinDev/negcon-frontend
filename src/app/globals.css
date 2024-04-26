@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.ant-modal-footer .ant-btn-primary {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(2 132 199 / var(--tw-bg-opacity)) !important;
+  color: white !important; /* Set button text color to white */
+}
+
+/* Optional: Style button on hover/focus */
+.ant-modal-footer .ant-btn-primary:hover,
+.ant-modal-footer .ant-btn-primary:focus {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(125 211 252 / var(--tw-bg-opacity)) !important;
+}
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

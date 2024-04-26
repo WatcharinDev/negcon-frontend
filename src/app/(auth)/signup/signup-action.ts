@@ -1,6 +1,7 @@
+'use server'
 import SignupServices from "@/app/services/signup/signup-services"
 
-export const onFinish=async(data:any)=>{
+export const handleSubmit=async(data:any)=>{
     'use server'
     try {
         const response = await SignupServices.SignUp(data)

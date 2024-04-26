@@ -2,7 +2,7 @@ import { authOptions } from "@/app/api/auth/authoptions";
 import { getServerSession } from "next-auth";
 
 const CommunityServices = {
-    GetAll: async (data: { username: string, password: string }) => {
+    GetAll: async (data: any) => {
         const session = await getServerSession(authOptions)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/get/all?page=1&size=10`, {
@@ -13,13 +13,11 @@ const CommunityServices = {
                 },
                 cache: 'no-store',
             });
-
+            const result = await response.json();
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Server error:status:${result.statusCode} message: ${result.message} detail:${result.details}`);
             }
-
-            const result: any = response.json();
-            return result
+            return result;
         } catch (error) {
             console.error('Error fetching data:', error);
             if (error instanceof Response) {
@@ -42,12 +40,11 @@ const CommunityServices = {
                 body: JSON.stringify(data)
             });
 
+            const result = await response.json();
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Server error:status:${result.statusCode} message: ${result.message} detail:${result.details}`);
             }
-
-            const result: any = response.json();
-            return result
+            return result;
         } catch (error) {
             console.error('Error fetching data:', error);
             if (error instanceof Response) {

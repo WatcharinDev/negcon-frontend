@@ -1,4 +1,4 @@
-import { ConfigProvider } from "antd";
+import { App, ConfigProvider } from "antd";
 
 
 const AppLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +13,10 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
     };
     return (
         <ConfigProvider theme={antGlobalConfig} >
-            {children}
+            <App>
+                {children}
+            </App>
+
         </ConfigProvider>
     );
 };
