@@ -25,7 +25,7 @@ const ProfileForm: FunctionComponent<Props> = ({ data }) => {
       }])
       form.setFieldsValue({ ...data ,birthday:moment(data.birthday)})
     }
-  }, [data])
+  }, [data,form])
 
   const handleEditProfile = () => {
     setDisabled(!disabled)
@@ -45,8 +45,8 @@ const ProfileForm: FunctionComponent<Props> = ({ data }) => {
               <div>
                 <Form.Item
                   className='w-full'
-                  name="username"
-                  rules={[{ required: true, message: 'Please input your username!' }]}
+                  name="email"
+                  rules={[{ required: true, message: 'Please input your email!' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -55,14 +55,14 @@ const ProfileForm: FunctionComponent<Props> = ({ data }) => {
                 <Form.Item
                   className='w-full'
                   name="first_name"
-                  rules={[{ required: true, message: 'Please input your username!' }]}
+                  rules={[{ required: true, message: 'Please input your email!' }]}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
                   className='w-full'
                   name="last_name"
-                  rules={[{ required: true, message: 'Please input your username!' }]}
+                  rules={[{ required: true, message: 'Please input your email!' }]}
                 >
                   <Input />
                 </Form.Item>

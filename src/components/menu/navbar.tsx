@@ -29,7 +29,7 @@ const Navbar: React.FC = async () => {
           </Link>
 
           <div className='flex flex-col justify-center align-middle'>
-            <h1 className='p-0 m-0'>{session?.user.username}</h1>
+            <h1 className='p-0 m-0'>{session?.user.email}</h1>
             <h1 className='p-0 m-0'>{session?.user.role_code}</h1>
           </div>
 
