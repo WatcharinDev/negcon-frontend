@@ -43,8 +43,8 @@ const SignupForm: React.FC<Props> = ({ }) => {
         <Form.Item
           className='w-full'
           label="บัญชีผู้ใช้งาน"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          name="email"
+          rules={[{ required: true, message: 'Please input your email!' }]}
         >
           <Input />
         </Form.Item>
@@ -71,7 +71,7 @@ const SignupForm: React.FC<Props> = ({ }) => {
             className='w-full'
             label="ชื่อ"
             name="first_name"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your email!' }]}
           >
             <Input />
           </Form.Item>
@@ -79,7 +79,7 @@ const SignupForm: React.FC<Props> = ({ }) => {
             className='w-full'
             label="นามสกุล"
             name="last_name"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Please input your email!' }]}
           >
             <Input />
           </Form.Item>

@@ -4,7 +4,7 @@ declare module "next-auth" {
   interface User {
     access_token: string
     id: number
-    username: string
+    email: string
     code:string
     profile_img:string
     first_name:string
@@ -23,7 +23,7 @@ declare module "next-auth/jwt" {
   interface JWT {
     access_token: string
     id: number
-    username: string
+    email: string
     code:string
     profile_img:string
     first_name:string

@@ -8,11 +8,11 @@ import { user } from '@/models/user'
 type Props = {}
 
 const ProfilePage: NextPage<Props> = async ({ }) => {
-  const response: response_data | undefined | null = await handleGetProfile()
-  const data: user = response?.data
+  // const response= await handleGetProfile()
+  // const data: user = response?.data
   return (
     <div className='text-center'>
-      <ProfileForm data={data}></ProfileForm>
+      {/* <ProfileForm data={data}></ProfileForm> */}
     </div>
   )
 }

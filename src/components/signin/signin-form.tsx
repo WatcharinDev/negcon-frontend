@@ -15,7 +15,7 @@ const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
             await signIn("credentials", {
                 access_token: result.data.access_token,
                 id: result.data.id,
-                username: result.data.username,
+                email: result.data.email,
                 code:result.data.code,
                 profile_img:result.data.profile_img,
                 first_name:result.data.first_name,
@@ -40,8 +40,8 @@ const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
                 <Form.Item
                     className='w-full'
                     label="อีเมล"
-                    name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    name="email"
+                    rules={[{ required: true, message: 'Please input your email!' }]}
                 >
                     <Input />
                 </Form.Item>
