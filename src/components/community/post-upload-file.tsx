@@ -82,6 +82,7 @@ const PostUploadFile: FunctionComponent<Props>= ({fileList,setFileList}) => {
                         afterOpenChange: (visible) => !visible && setPreviewImage(''),
                     }}
                     src={previewImage}
+                    alt={previewImage}
                 />
             )}
         </>

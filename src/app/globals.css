@@ -15,6 +15,17 @@
   --tw-bg-opacity: 1 !important;
   background-color: rgb(125 211 252 / var(--tw-bg-opacity)) !important;
 }
+
+.ant-input-disabled {
+  color: #737373 !important;
+}
+
+.ant-picker .ant-picker-disabled {
+  color: #737373 !important;
+}
+.ant-select-disabled {
+  color: #737373 !important;
+}
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

@@ -1,5 +1,6 @@
 'use server'
-import UtilityServices from "@/app/services/utility/utility-services"
+
+import UtilityServices from "@/services/utility/utility-services"
 
 export const handleUploadPostImage = async (payload: any) => {
     try {

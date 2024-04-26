@@ -1,5 +1,7 @@
 'use server'
-import SignupServices from "@/app/services/signup/signup-services"
+
+import SignupServices from "@/services/signup/signup-services"
+
 
 export const handleSubmit=async(data:any)=>{
     'use server'

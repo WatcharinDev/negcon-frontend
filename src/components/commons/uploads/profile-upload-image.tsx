@@ -30,16 +30,12 @@ const ProfileUploadImage: FunctionComponent<Props> = ({fileList,setFileList}) =>
   };
   const props: UploadProps = {
     onRemove: (file) => {
-      console.log('rm file', file)
       setFileList(provious => provious.filter((i) => i.url !== file.url))
     },
     beforeUpload: async (file:UploadFile) => {
-      console.log('beforeUpload',file)
       const formData = new FormData();
       formData.append('file', file as RcFile)
-      console.log(formData)
       handleUploadPostImage(formData).then((response: any) => {
-        console.log('Image', response)
         setFileList([...fileList, {
           uid: new Date().toString(),
           name: file.originFileObj?.name || "",
@@ -76,6 +72,7 @@ const ProfileUploadImage: FunctionComponent<Props> = ({fileList,setFileList}) =>
             afterOpenChange: (visible) => !visible && setPreviewImage(''),
           }}
           src={previewImage}
+          alt={previewImage}
         />
       )}
     </React.Fragment>
