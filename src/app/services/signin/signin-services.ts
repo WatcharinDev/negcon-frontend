@@ -1,7 +1,7 @@
 const SigninServices = {
     SignIn: async (data:{username:string,password:string}) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/signin`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

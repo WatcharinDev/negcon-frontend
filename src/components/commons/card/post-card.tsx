@@ -6,15 +6,21 @@ import Image from 'next/image';
 import { community_list } from '@/models/community';
 const { Meta } = Card;
 type Props = {
-  data:community_list
+  data: community_list
 }
 
-const PostCard: FunctionComponent<Props> = ({data}) => {
+const PostCard: FunctionComponent<Props> = ({ data }) => {
   const [visible, setVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [postImages, setPostImages] = useState<string[]>([])
   const longText = data.posts_content;
   const maxCharacters = 300;
   const short = longText.substring(0, maxCharacters)
+  useEffect(() => {
+    if (data) {
+      setPostImages(JSON.parse(data.posts_images))
+    }
+  }, [data])
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -39,8 +45,8 @@ const PostCard: FunctionComponent<Props> = ({data}) => {
       ]}
     >
       <Meta
-        avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-        title={data.posts_created_by}
+        avatar={<Avatar src={data.posts_profile_img} size={50} />}
+        title={data.posts_user_name}
         description={data.posts_update_at}
       />
       <p className='mt-4'>
@@ -55,16 +61,20 @@ const PostCard: FunctionComponent<Props> = ({data}) => {
         <ImageAntd
           preview={{ visible: false }}
           className='w-full'
-          src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
+          src={postImages.length > 0 ? postImages[0] : ""}
           onClick={() => setVisible(true)}
         />
       </div>
 
       <div className='hidden'>
         <ImageAntd.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
-          <ImageAntd src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp" alt='' width={100} height={100} />
-          <ImageAntd src="https://gw.alipayobjects.com/zos/antfincdn/cV16ZqzMjW/photo-1473091540282-9b846e7965e3.webp" alt='' width={100} height={100} />
-          <ImageAntd src="https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp" alt='' />
+          {
+            postImages?.length > 0 && postImages.map((v:string, i:number) => (
+              <ImageAntd src={v} alt={v} key={i}/>
+            ))
+          }
+
+
         </ImageAntd.PreviewGroup>
       </div>
     </Card>

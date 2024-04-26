@@ -11,15 +11,17 @@ type Props = {
 const SigninForm: FunctionComponent<Props> = ({ onFinish, onFinishFailed }) => {
     const handleSignIn = (data: any) => {
         onFinish(JSON.parse(JSON.stringify(data))).then(async (result: any) => {
+            console.log('aaaaa',result)
             await signIn("credentials", {
-                access_token: result.access_token,
-                id: result.id,
-                username: result.username,
-                code:result.code,
-                first_name:result.first_name,
-                last_name:result.last_name,
-                role_code:result.role_code,
-                role_id:result.role_id,
+                access_token: result.data.access_token,
+                id: result.data.id,
+                username: result.data.username,
+                code:result.data.code,
+                profile_img:result.data.profile_img,
+                first_name:result.data.first_name,
+                last_name:result.data.last_name,
+                role_code:result.data.role_code,
+                role_id:result.data.role_id,
             });
         }).catch((err: any) => {
 
