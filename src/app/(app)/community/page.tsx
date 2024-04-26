@@ -11,7 +11,6 @@ type Props = {}
 const CommunityPage: NextPage<Props> = async ({ }) => {
     const session = await getServerSession(authOptions)
     const response: response_data_community_list = await handleGetAllPost({ page: 1, size: 10 })
-    console.log('res',response)
     const data: community_list[] = response?.data as community_list[]
     return (
         <div className='flex flex-col justify-center items-center gap-4'>

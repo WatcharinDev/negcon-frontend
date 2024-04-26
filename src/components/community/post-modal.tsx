@@ -19,7 +19,6 @@ const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
     const { notification } = App.useApp()
     const handleSubmit = () => {
         form.validateFields().then(async (values) => {
-            console.log('value', values)
             const payload = {
                 "id": 0,
                 "user_name": session?.user.first_name + " " + session?.user.last_name,
@@ -27,7 +26,6 @@ const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
                 "content": values.content,
                 "images": fileList.map((v) => { return v.url })
             }
-            console.log('payload', payload)
             handleAddPost(payload).then((response) => {
                 NotificationSuccess(notification, response.message)
             }).then(()=>{

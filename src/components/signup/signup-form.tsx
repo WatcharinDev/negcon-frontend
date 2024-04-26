@@ -18,9 +18,7 @@ const SignupForm: React.FC<Props> = ({ }) => {
       role_code:"SADM",
       profile_img: fileList[0]?.url || ""
     }
-    console.log('payload',payload)
     handleSubmit(payload).then((response: any) => {
-      console.log('response',response)
       NotificationSuccess(notification,"")
     }).catch((err: any) => {
       console.log(err)
