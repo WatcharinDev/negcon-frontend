@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache"
 export const handleAddPost = async (payload: any) => {
     try {
         const response = await CommunityServices.Add(payload)
-        console.log('handleAddPost',response)
         if (!response) {
             return response
         }
@@ -20,7 +19,7 @@ export const handleGetAllPost = async (filter: any) => {
 
     try {
         const response = await CommunityServices.GetAll(filter)
-  
+
         if (!response) {
             return null
         }
@@ -34,7 +33,6 @@ export const handleGetAllPost = async (filter: any) => {
 export const handleLikePost = async (data: any) => {
     try {
         const response = await CommunityServices.LikePost(data)
-        console.log('handleLikePost',response)
         if (!response) {
             return null
         }

@@ -12,7 +12,7 @@ const ProfilePage: NextPage<Props> = async ({ }) => {
    const data: user = response?.data
   return (
     <div className='text-center'>
-      <ProfileForm data={data}></ProfileForm>
+      {/* <ProfileForm data={data}></ProfileForm> */}
     </div>
   )
 }
