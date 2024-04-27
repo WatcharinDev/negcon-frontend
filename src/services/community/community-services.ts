@@ -5,13 +5,14 @@ const CommunityServices = {
     GetAll: async (data: any) => {
         const session = await getServerSession(authOptions)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/get/all?page=1&size=10`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/get/all?page=1&size=100`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${session?.user?.access_token}`,
                 },
-                cache: 'no-store',
+                cache:"no-store",
+                
             });
             const result = await response.json();
             if (!response.ok) {
@@ -37,6 +38,7 @@ const CommunityServices = {
                     'Authorization': `Bearer ${session?.user?.access_token}`,
                 },
                 cache: 'no-store',
+                next: { tags: ["test"] },
                 body: JSON.stringify(data)
             });
 
