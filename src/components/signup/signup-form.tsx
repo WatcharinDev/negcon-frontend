@@ -6,20 +6,24 @@ import React, { useState } from 'react'
 import ProfileUploadImage from '../commons/uploads/profile-upload-image'
 import { handleSubmit } from '@/app/(auth)/signup/signup-action'
 import { NotificationSuccess } from '@/helper/alert-modals'
+import { response_message } from '@/models/response'
+import { useRouter } from 'next/navigation'
 
 type Props = {}
 
 const SignupForm: React.FC<Props> = ({ }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
   const { notification } = App.useApp()
+  const router=useRouter()
   const onFinish = (values: any) => {
     const payload = {
       ...values,
       role_code:"SADM",
       profile_img: fileList[0]?.url || ""
     }
-    handleSubmit(payload).then((response: any) => {
-      NotificationSuccess(notification,"")
+    handleSubmit(payload).then((response: response_message) => {
+      NotificationSuccess(notification,response.statusCode.toString(),response.message)
+      router.push('/signin')
     }).catch((err: any) => {
       console.log(err)
     });

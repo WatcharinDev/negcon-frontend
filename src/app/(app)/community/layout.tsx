@@ -9,7 +9,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
   return (
     <div>
       {children}
-      <AddpostButton />
+    
     </div>
   )
 }

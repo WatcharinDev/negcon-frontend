@@ -5,17 +5,21 @@ import TextArea from 'antd/es/input/TextArea'
 import React, { FunctionComponent, useState } from 'react'
 import PostUploadFile from './post-upload-file'
 import { useSession } from 'next-auth/react'
+import { revalidatePath } from 'next/cache'
+import { useRouter } from 'next/navigation'
 
 type Props = {
     open: boolean
     onClose: Function
+    onSubmit:Function
 }
 
-const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
+const PostModal: FunctionComponent<Props> = ({ open, onClose ,onSubmit}) => {
     const { data: session } = useSession()
     const [loading, setLoading] = useState(false);
     const [form] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([])
+    const router=useRouter()
     const { notification } = App.useApp()
     const handleSubmit = () => {
         form.validateFields().then(async (values) => {
@@ -26,14 +30,8 @@ const PostModal: FunctionComponent<Props> = ({ open, onClose }) => {
                 "content": values.content,
                 "images": fileList.map((v) => { return v.url })
             }
-            handleAddPost(payload).then((response) => {
-                NotificationSuccess(notification, response.message)
-            }).then(()=>{
-                form.resetFields()
-                handleClose()
-            }).catch((error) => {
-                console.log('error', error)
-            })
+            form.resetFields()
+            onSubmit(payload)
         }).catch((errorInfo) => {
 
         });
