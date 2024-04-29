@@ -5,8 +5,6 @@ import { getServerSession } from 'next-auth';
 import React from 'react'
 import { handleGetAllPost } from './actions';
 import { community_list, response_data_community_list } from '@/models/community';
-import { revalidatePath } from 'next/cache';
-import axios from 'axios';
 import AddpostButton from '@/components/community/addpost-button';
 
 type Props = {}
@@ -14,8 +12,17 @@ type Props = {}
 const CommunityPage: NextPage<Props> = async ({ }) => {
     const session = await getServerSession(authOptions)
     const response: response_data_community_list = await handleGetAllPost({ page: 1, size: 100 })
-    console.log('7777777777777777777777777777', response.data[0])
     const data: community_list[] = response?.data as community_list[]
+    data.sort((a, b) => {
+        // Use > operator for descending order (latest first)
+        if (a.post_created_at > b.post_created_at) {
+            return -1;
+        } else if (a.post_created_at < b.post_created_at) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
     return (
         <div className='flex flex-col justify-center items-center gap-4'>
             {
