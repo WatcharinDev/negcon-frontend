@@ -31,6 +31,7 @@ const PostModal: FunctionComponent<Props> = ({ open, onClose ,onSubmit}) => {
                 "images": fileList.map((v) => { return v.url })
             }
             form.resetFields()
+            setFileList([])
             onSubmit(payload)
         }).catch((errorInfo) => {
 

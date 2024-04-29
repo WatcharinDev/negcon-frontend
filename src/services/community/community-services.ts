@@ -31,7 +31,7 @@ const CommunityServices = {
     Add: async (data:any) => {
         const session = await getServerSession(authOptions)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/create`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
