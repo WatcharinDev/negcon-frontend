@@ -78,7 +78,7 @@ const ProfileForm: FunctionComponent<Props> = ({ data }) => {
         <Form.Item name="introduction" label="เกี่ยวกับตัวเอง">
           <Input.TextArea />
         </Form.Item>
-        <div className='grid grid-cols-2 gap-4'>
+        {/* <div className='grid grid-cols-2 gap-4'>
           <Form.Item
             className='w-full'
             label="วันเกิด"
@@ -89,7 +89,7 @@ const ProfileForm: FunctionComponent<Props> = ({ data }) => {
           <Form.Item className='w-full' label="เบอร์โทรศัพท์" name="tel">
             <Input />
           </Form.Item>
-        </div>
+        </div> */}
         {/* <div className='grid grid-cols-2 gap-4'>
           <Form.Item
             className='w-full'

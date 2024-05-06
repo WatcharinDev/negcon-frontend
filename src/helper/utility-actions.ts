@@ -14,3 +14,16 @@ export const handleUploadPostImage = async (payload: any) => {
     }
 
 }
+
+export const handleGetAllRoleUser=async()=>{
+    'use server'
+    try {
+        const response = await UtilityServices.GetAllRoleUser()
+        if (!response) {
+            return null
+        }
+        return response
+    } catch (error) {
+
+    }
+}

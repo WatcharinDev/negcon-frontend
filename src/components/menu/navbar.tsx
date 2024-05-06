@@ -24,7 +24,7 @@ const Navbar: React.FC = async () => {
           </div>
         </div>
         <div className='flex align-middle gap-4 justify-end'>
-          <Link href={`/user/profile`}>
+          <Link href={`/user/my-profile`}>
             <Avatar size={50} icon={<UserOutlined />} src={session?.user.profile_img} />
           </Link>
 
