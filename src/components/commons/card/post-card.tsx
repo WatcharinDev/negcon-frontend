@@ -16,7 +16,7 @@ type Props = {
 };
 
 const PostCard: React.FunctionComponent<Props> = ({ data }) => {
-  console.log('data',data)
+  console.log('data',data.post_images)
   const { data: session } = useSession()
   const [visible, setVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -66,7 +66,7 @@ const PostCard: React.FunctionComponent<Props> = ({ data }) => {
   const handleOnLikePost = () => {
     console.log('data', data)
     const payload = {
-      post_id: data.post_id,
+      post_id: data.id,
       post_likes: data.post_likes
     }
     handleLikePost(payload).then((response) => {
@@ -83,22 +83,22 @@ const PostCard: React.FunctionComponent<Props> = ({ data }) => {
       ]}
     >
       <Meta
-        avatar={<Avatar src={data.post_profile_img} size={50} />}
-        title={data.post_user_name}
-        description={data.post_update_at}
+        avatar={data.profile_img?<Avatar src={data.profile_img} size={50} />:    <Avatar style={{ backgroundColor: '#f56a00' }}>{data.first_name.charAt(0).toUpperCase()}</Avatar>}
+        title={data.email}
+        description={data.post_created_at}
 
       />
 
       <Paragraph className='mt-4' ellipsis={true ? { rows: 3, expandable: true, symbol: 'ดูเพิ่มเติม' } : false}>
         {renderContentWithLineBreaks(data.post_content)}
       </Paragraph>
-      {postImages.length > 0 && (
+      {data.post_images?.length > 0 && (
         <>
           <div className="overflow-y-hidden mt-4 h-[400px]">
             <ImageAntd
               preview={{ visible: false }}
               className="w-full"
-              src={postImages.length > 0 ? postImages[0] : ''}
+              src={data.post_images.length > 0 ? data.post_images[0] : ''}
               onClick={() => setVisible(true)}
             />
           </div>

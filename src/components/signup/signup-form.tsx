@@ -8,21 +8,24 @@ import { handleSubmit } from '@/app/(auth)/signup/signup-action'
 import { NotificationSuccess } from '@/helper/alert-modals'
 import { response_message } from '@/models/response'
 import { useRouter } from 'next/navigation'
+import { Role } from '@/models/utility'
 
-type Props = {}
+type Props = {
+  roles: Role[]
+}
 
-const SignupForm: React.FC<Props> = ({ }) => {
+const SignupForm: React.FC<Props> = ({ roles }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
   const { notification } = App.useApp()
-  const router=useRouter()
+  const router = useRouter()
   const onFinish = (values: any) => {
+    console.log('value', values)
     const payload = {
       ...values,
-      role_code:"SADM",
       profile_img: fileList[0]?.url || ""
     }
-    handleSubmit(payload).then((response: response_message) => {
-      NotificationSuccess(notification,response.statusCode.toString(),response.message)
+    handleSubmit(JSON.stringify(payload)).then((response: response_message) => {
+      NotificationSuccess(notification, response.statusCode.toString(), response.message)
       router.push('/signin')
     }).catch((err: any) => {
       console.log(err)
@@ -34,13 +37,13 @@ const SignupForm: React.FC<Props> = ({ }) => {
   return (
     <Card className='w-[800px] bg-gray-300 '>
       <h1 className='text-center text-[2rem]'>สมัครสมาชิก</h1>
-      <div className='text-center mt-4'>
+      {/* <div className='text-center mt-4'>
         <ProfileUploadImage fileList={fileList} setFileList={setFileList} />
-      </div>
+      </div> */}
       <Form
         className='w-full text-white'
         layout='vertical'
-        initialValues={{ remember: true }}
+        initialValues={{ remember: true, profile_img: "" }}
         onFinish={onFinish}
         onFinishFailed={handleOnFinishFailed}
       >
@@ -108,8 +111,11 @@ const SignupForm: React.FC<Props> = ({ }) => {
           <Select
             filterOption={filterOption}
           >
-            <Select.Option value="2" key={`cutomer`}>ผู้ใช้</Select.Option>
-            <Select.Option value="3" key={`fixer`}>ช่าง</Select.Option>
+            {
+              roles.map((v, i) => (
+                <Select.Option value={v.id} key={i}>{v.name}</Select.Option>
+              ))
+            }
           </Select>
         </Form.Item>
         <Form.Item name="introduction" label="เกี่ยวกับตัวเอง">

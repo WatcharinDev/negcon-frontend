@@ -6,7 +6,7 @@ import SignupServices from "@/services/signup/signup-services"
 export const handleSubmit=async(data:any)=>{
     'use server'
     try {
-        const response = await SignupServices.SignUp(data)
+        const response = await SignupServices.SignUp(JSON.parse(data))
         if (!response) {
             return null
         }
